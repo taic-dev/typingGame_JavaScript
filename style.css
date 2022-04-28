@@ -32,3 +32,6 @@ main{max-width: 500px; height: calc(100vh - 70px - 40px); margin: auto; display:
 
 /* footer */
 .footer{height: 40px; display: flex; justify-content: center; align-items: center;}
+
+/* status */
+.bg--red{background: #dc3545; border: solid 0.5px #dc3545;}
