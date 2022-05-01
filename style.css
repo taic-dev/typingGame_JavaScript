@@ -1,15 +1,25 @@
-body{height: 100vh; background: #333; color: #fff;}
+body{height: 100vh; background: #333; color: #fff; font-family: 'Ubuntu', sans-serif;}
+/* start_screen */
+.start__wrapper{position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); -webkit-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); z-index: 1; width: 100%; height: 100vh; background: #333; text-align: center; display: flex; justify-content: center; align-items: center;}
+.start__item>*{margin: 20px 0;}
+.start__item img{width: 150px; height: 150px; border-radius: 5px;}
+.start__item h1{font-size: 30px; line-height: 1.5; height: 100px;}
+.start__item label{display: block; width: 150px; margin: auto; padding: 10px 30px; background: #000; border-radius: 20px; transition: 0.5s;}
+.start__item input{display: none;}
+.start__item label:hover{color: #333;background: #fff; transition: 0.5s;}
+
+/* typing_game */
 /* header */
 .header{height: 70px; display: flex; align-items: center;}
-.header-inner{display: flex; justify-content: start; align-items: center; margin-left: 20px;}
+.header__inner{display: flex; justify-content: start; align-items: center; margin-left: 20px;}
 .header img{border-radius: 5px; margin-right: 20px;}
-.header-item h1{margin-bottom: 5px;}
+.header__item h1{margin-bottom: 5px;}
 
 /* main */
 main{max-width: 500px; height: calc(100vh - 70px - 40px); margin: auto; display: flex; flex-direction: column; justify-content: center;}
-.main-wrapper{margin: 0 15px;}
-.main-wrapper>*{margin-top: 40px; position: relative;}
-.main-wrapper>*::before{position: absolute; top: 0; left: 10px; content: ""; width: 65px; height: 20px;}
+.main__wrapper{margin: 0 15px;}
+.main__wrapper>*{margin-top: 40px; position: relative;}
+.main__wrapper>*::before{position: absolute; top: 0; left: 10px; content: ""; width: 65px; height: 20px;}
 .command-area{width: 100%; height: 100px; border: solid 0.5px #fff;}
 .command-area::before{content: ">>command";}
 .command-area>span{position: relative; display: block; height: 100px; line-height: 115px; font-size: 35px; padding-left: 60px;}
@@ -20,8 +30,11 @@ main{max-width: 500px; height: calc(100vh - 70px - 40px); margin: auto; display:
 .command-area>span:last-child{position: absolute; top: 0;}
 #command-answer{opacity: 0.7;}
 #command{color: yellowgreen;}
-.explanation-area{width: 100%; height: 100px; border: solid 0.5px #fff;}
-.explanation-area::before{content: ">>explanation";}
+.count__wrapper{display: flex; justify-content: space-between;}
+.success-area,
+.typo-area{width: 45%; height: 100px; border: solid 0.5px #fff;}
+.success-area::before{left: 10px; content: "　>>sucess";}
+.typo-area::before{left: 10px; content: "　>>typo";}
 
 /* animation */
 @keyframes flash{

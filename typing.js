@@ -1,3 +1,22 @@
+// start_screen
+const bgMusic = new Audio("musics/bg.mp3");
+const clickSound = new Audio("musics/click.mp3");
+const typingSoucnd = new Audio("musics/typing.mp3");
+
+const getFooter = document.querySelector("footer");
+const getStartScreen = document.querySelector(".start__wrapper");
+const button = document.querySelector("label");
+let startFlag = document.querySelector("input").checked;
+console.log(startFlag);
+
+button.addEventListener("click",()=>{
+    clickSound.play();
+    bgMusic.play();
+    getStartScreen.style.display="none";
+    startFlag = true;
+});
+
+// typing_game
 const commandAnswer = document.getElementById("command-answer");
 const commandArea = document.getElementById("command");
 let command = [
@@ -21,14 +40,17 @@ console.log(commandRand)
 
 
 window.addEventListener("keydown",(e)=>{
-    if(answerLength > count){
+    console.log(startFlag);
+    if(answerLength > count && startFlag == true){
         if(answer[count] == e.key || "Shift" == e.key){
             if("Shift" == e.key) return;
             typingResult += e.key
             commandArea.innerHTML = typingResult;
             commandAnswer.classList.remove("bg--red");
             count++
+            
             if(answerLength == count){
+                typingSoucnd.play();
                 commandAnswer.innerHTML = "";
                 commandArea.innerHTML = "";
                 command = ["console.log()","getElementById()","querySelector()","addEventListener()","isArray()"];
@@ -54,6 +76,5 @@ window.addEventListener("keydown",(e)=>{
 });
 
 // 初期化処理を作成する
-// オープニング
 // タイポカウント
 // タイム計測

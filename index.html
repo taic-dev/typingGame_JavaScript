@@ -6,27 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
     <title>JavaScript_typingGame</title>
 </head>
 <body>
+    <div class="start__wrapper">
+        <div class="start__item">
+            <img src="img/javascript.svg" alt="JavaScript_ロゴ画像">
+            <h1 id="js-target">JavaScript<br>Typing Game</h1>
+            <label for="flag">Game Start</label>
+            <input type="checkbox" id="flag">
+        </div>
+    </div>
+
     <header class="header">
-        <div class="header-inner">
+        <div class="header__inner">
             <img src="img/javascript.svg" alt="ロゴ" width="60" height="60">
-            <div class="header-item">
+            <div class="header__item">
                 <h1>JavaScript</h1>
-                <span>コマンド＿タイピングゲーム</span>
+                <span>Typing Game</span>
             </div>
         </div>
     </header>
     <main>
-        <div class="main-wrapper">
+        <div class="main__wrapper">
             <div class="command-area"><span id="command-answer"></span><span id="command"></span></div>
-            <div class="explanation-area"></div>
+            <div class="count__wrapper">
+                <div class="success-area"></div>
+                <div class="typo-area"></div>
+            </div>
         </div>
     </main>
     <footer class="footer">
         <p>created by taic-dev</p>
     </footer>
-    <script src="index.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="typing.js"></script>
+    <script src="t.min.js"></script>
+    <script>$('#js-target').t({speed : 100});</script>
 </body>
 </html>
