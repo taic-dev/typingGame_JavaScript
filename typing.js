@@ -1,4 +1,3 @@
-// start_screen
 const bgSound = new Audio("musics/bg.mp3");
 const clickSound = new Audio("musics/click.mp3");
 const typingSound = new Audio("musics/typing.mp3");
@@ -7,7 +6,9 @@ const timeUpSoucnd = new Audio("musics/timeup.mp3");
 
 const getFooter = document.querySelector("footer");
 const getStartScreen = document.querySelector(".start__wrapper");
-const button = document.querySelector("label");
+const getEndScreen = document.querySelector(".end__wrapper");
+const startButton = document.querySelector("label");
+const replayButton = document.querySelector("button");
 let startFlag = document.querySelector("input").checked;
 let time = document.querySelector("time");
 let typo = document.getElementById("typo-area");
@@ -15,11 +16,16 @@ let success = document.getElementById("success-area");
 let timeCount = 60;
 let timeFlag = 0;
 bgSound.volume = 0.1;
+clickSound.volume = 0.1;
+typingSound.volute = 0.1;
+typoSound.volume = 0.1;
+timeUpSoucnd.volume = 0.1;
+
 time.innerHTML = timeCount;
 typo.innerHTML = 0;
 success.innerHTML = 0;
 
-button.addEventListener("click",()=>{
+startButton.addEventListener("click",()=>{
     clickSound.play();
     bgSound.play();
     bgSound.loop = true;
@@ -38,6 +44,8 @@ button.addEventListener("click",()=>{
             clickSound.pause();
             typingSound.pause();
             typoSound.pause();
+
+            getEndScreen.classList.add("is--show");
         }
     },1000);
 });
@@ -52,50 +60,50 @@ let command = [
     "isArray()"
 ];
 let commandRand = Math.floor(Math.random()*command.length)
-    let answer = command[commandRand];
-    commandAnswer.innerHTML = answer;
-    let answerLength = answer.length;
-    answer = [...answer];
-    let typingResult = "";
-    let count = 0;
-    let typoCount = 0;
-    let successCount = 0;
+let answer = command[commandRand];
+commandAnswer.innerHTML = answer;
+let answerLength = answer.length;
+answer = [...answer];
+let typingResult = "";
+let count = 0;
+let typoCount = 0;
+let successCount = 0;
 
-    window.addEventListener("keydown",(e)=>{
-        if(answerLength > count && startFlag == true && timeFlag == 0){
-            if(answer[count] == e.key || "Shift" == e.key){
-                if("Shift" == e.key) return;
-                typingResult += e.key
-                commandArea.innerHTML = typingResult;
-                commandAnswer.classList.remove("bg--red");
-                count++
-                
-                if(answerLength == count){
-                    typingSound.play();
-                    commandAnswer.innerHTML = "";
-                    commandArea.innerHTML = "";
-                    command = ["console.log()","getElementById()","querySelector()","addEventListener()","isArray()"];
-                    commandRand = Math.floor(Math.random()*command.length)
-                    answer = command[commandRand];
-                    commandAnswer.innerHTML = answer;
-    
-                    answerLength = answer.length;
-                    console.log(answerLength);
-                    answer = [...answer];
-                    typingResult = "";
-                    count = 0;
-                    successCount++
-                    success.innerHTML = successCount;
-                }
-            }else{
-                typoSound.play();
-                typoCount++
-                typo.innerHTML = typoCount;
-                commandAnswer.classList.add("bg--red");
-            }        
-        }
-    });
+window.addEventListener("keydown",(e)=>{
+    if(answerLength > count && startFlag == true && timeFlag == 0){
+        if(answer[count] == e.key || "Shift" == e.key){
+            if("Shift" == e.key) return;
+            typingResult += e.key
+            commandArea.innerHTML = typingResult;
+            commandAnswer.classList.remove("bg--red");
+            count++
+            
+            if(answerLength == count){
+                typingSound.play();
+                commandAnswer.innerHTML = "";
+                commandArea.innerHTML = "";
+                command = ["console.log()","getElementById()","querySelector()","addEventListener()","isArray()"];
+                commandRand = Math.floor(Math.random()*command.length)
+                answer = command[commandRand];
+                commandAnswer.innerHTML = answer;
 
-// 初期化処理を作成する
-// タイム計測
-// 
+                answerLength = answer.length;
+                console.log(answerLength);
+                answer = [...answer];
+                typingResult = "";
+                count = 0;
+                successCount++
+                success.innerHTML = successCount;
+            }
+        }else{
+            typoSound.play();
+            typoCount++
+            typo.innerHTML = typoCount;
+            commandAnswer.classList.add("bg--red");
+        }        
+    }
+});
+
+replayButton.addEventListener("click",()=>{
+    location.reload();
+});
