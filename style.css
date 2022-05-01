@@ -33,6 +33,8 @@ main{max-width: 500px; height: calc(100vh - 70px - 40px); margin: auto; display:
 .count__wrapper{display: flex; justify-content: space-between;}
 .success-area,
 .typo-area{width: 45%; height: 100px; border: solid 0.5px #fff;}
+#success-area,
+#typo-area{display: block; line-height: 70px; font-size: 35px; text-align: center;}
 .success-area::before{left: 10px; content: "　>>sucess";}
 .typo-area::before{left: 10px; content: "　>>typo";}
 

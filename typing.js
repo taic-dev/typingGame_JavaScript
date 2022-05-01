@@ -1,17 +1,24 @@
 // start_screen
-const bgMusic = new Audio("musics/bg.mp3");
+const bgSound = new Audio("musics/bg.mp3");
 const clickSound = new Audio("musics/click.mp3");
 const typingSoucnd = new Audio("musics/typing.mp3");
+const typoSound = new Audio("musics/typo.mp3");
 
 const getFooter = document.querySelector("footer");
 const getStartScreen = document.querySelector(".start__wrapper");
 const button = document.querySelector("label");
 let startFlag = document.querySelector("input").checked;
+let typo = document.getElementById("typo-area");
+let success = document.getElementById("success-area");
+bgSound.volume = 0.1;
+typo.innerHTML = 0;
+success.innerHTML = 0;
 console.log(startFlag);
 
 button.addEventListener("click",()=>{
     clickSound.play();
-    bgMusic.play();
+    bgSound.play();
+    bgSound.loop = true;
     getStartScreen.style.display="none";
     startFlag = true;
 });
@@ -37,6 +44,7 @@ console.log(commandRand)
     let typingResult = "";
     let count = 0;
     let typoCount = 0;
+    let successCount = 0;
 
 
 window.addEventListener("keydown",(e)=>{
@@ -65,16 +73,18 @@ window.addEventListener("keydown",(e)=>{
                 answer = [...answer];
                 typingResult = "";
                 count = 0;
+                successCount++
+                success.innerHTML = successCount;
             }
         }else{
+            typoSound.play();
             typoCount++
-            console.log(typoCount)
-            console.log("失敗");
+            typo.innerHTML = typoCount;
             commandAnswer.classList.add("bg--red");
         }        
     }
 });
 
 // 初期化処理を作成する
-// タイポカウント
 // タイム計測
+// 
