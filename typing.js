@@ -1,29 +1,52 @@
+// コマンド一覧
+const getCommand = () => {
+    return ["console.log()","alert()","getElementById()","querySelector()","addEventListener()","isArray()","eval()","isFinite()","isNaN()","parseFloat()","parseInt()","decodeURI()","decodeURIComponent()","encodeURI()","encodeURIComponent()","Object()","Function()","Boolean()","Symbol()","filter()","map()","find()","forEach()","some()","every()","reduce()","includes()"];
+}
+const command = getCommand();
+
+// 音源
 const bgSound = new Audio("musics/bg.mp3");
 const clickSound = new Audio("musics/click.mp3");
 const typingSound = new Audio("musics/typing.mp3");
 const typoSound = new Audio("musics/typo.mp3");
 const timeUpSoucnd = new Audio("musics/timeup.mp3");
 
-const getFooter = document.querySelector("footer");
 const getStartScreen = document.querySelector(".start__wrapper");
 const getEndScreen = document.querySelector(".end__wrapper");
 const startButton = document.querySelector("label");
 const replayButton = document.querySelector("button");
+
+const commandAnswer = document.getElementById("command-answer");
+const commandArea = document.getElementById("command");
+
+// カウント
+let count = 0;
+let timeCount = 10;
+let typoCount = 0;
+let successCount = 0;
+
+// フラグ
 let startFlag = document.querySelector("input").checked;
+let timeFlag = 0;
+
+// タイム / スコアエリア取得
 let time = document.querySelector("time");
 let typo = document.getElementById("typo-area");
 let success = document.getElementById("success-area");
-let timeCount = 60;
-let timeFlag = 0;
-bgSound.volume = 0.1;
-clickSound.volume = 0.1;
-typingSound.volute = 0.1;
-typoSound.volume = 0.1;
-timeUpSoucnd.volume = 0.1;
 
+// タイム / スコア初期値
 time.innerHTML = timeCount;
 typo.innerHTML = 0;
 success.innerHTML = 0;
+
+// ボリューム
+const vol = 0.1;
+bgSound.volume = vol;
+clickSound.volume = vol;
+typingSound.volume = vol;
+typoSound.volume = vol;
+timeUpSoucnd.volume = vol;
+
 
 startButton.addEventListener("click",()=>{
     clickSound.play();
@@ -50,24 +73,12 @@ startButton.addEventListener("click",()=>{
     },1000);
 });
 
-const commandAnswer = document.getElementById("command-answer");
-const commandArea = document.getElementById("command");
-let command = [
-    "console.log()",
-    "getElementById()",
-    "querySelector()",
-    "addEventListener()",
-    "isArray()"
-];
 let commandRand = Math.floor(Math.random()*command.length)
 let answer = command[commandRand];
 commandAnswer.innerHTML = answer;
 let answerLength = answer.length;
 answer = [...answer];
 let typingResult = "";
-let count = 0;
-let typoCount = 0;
-let successCount = 0;
 
 window.addEventListener("keydown",(e)=>{
     if(answerLength > count && startFlag == true && timeFlag == 0){
@@ -82,7 +93,9 @@ window.addEventListener("keydown",(e)=>{
                 typingSound.play();
                 commandAnswer.innerHTML = "";
                 commandArea.innerHTML = "";
-                command = ["console.log()","getElementById()","querySelector()","addEventListener()","isArray()"];
+                
+                // command = getCommand();
+                
                 commandRand = Math.floor(Math.random()*command.length)
                 answer = command[commandRand];
                 commandAnswer.innerHTML = answer;
